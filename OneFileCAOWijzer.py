@@ -128,7 +128,9 @@ class DataCurrentSituation:
         df = self.df.sort_values(by='Laatst gefactureerde datum')
         return df[df['Laatst gefactureerde datum'] == df['Laatst gefactureerde datum'].unique()[-1]]
 
-
+    def write_active_df_to_excel(self) -> None:
+        df = self.get_df_active_customers()
+        df.to_excel(writer, sheet_name='Data_punt_3_HuidigeVerdeling', startcol=4)
 
 
 
