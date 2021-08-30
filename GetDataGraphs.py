@@ -1,5 +1,5 @@
 import matplotlib.pyplot as plt
-from CAOWijzer2.ReadData import ReadData
+from ReadData import ReadData
 
 
 def create_plot(column_names: list, values: list, title: str) -> None:
