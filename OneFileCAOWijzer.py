@@ -40,6 +40,7 @@ def get_column_names(annual_df: pd.DataFrame) -> list[str]:
     df['Datum'] = df['Datum'].apply(lambda x: convert_int_to_month(x.month))
     month_list = df['Datum'].unique()
     columns.extend(month_list)
+    
     return columns
 
 def write_df_to_excel(df: pd.DataFrame, sheet_name: str, start_col: float) -> None:
@@ -87,6 +88,7 @@ class DataSetAllYears:
 
     def get_result_current_year(self) -> list[float]:
         df_current_year = self.get_df_current_year()
+        
         return return_annual_result(df=df_current_year, year='2021')
 
     def get_overall_result(self) -> list[list[float]]:
@@ -99,6 +101,7 @@ class DataSetAllYears:
 
         overall_result.extend(result_previous_years)
         overall_result.append(result_current_year)
+        
         return overall_result
 
     def get_result_df(self) -> pd.DataFrame:
@@ -128,6 +131,7 @@ class DataCurrentSituation:
 
     def get_df_active_customers(self) -> pd.DataFrame:
         df = self.df.sort_values(by='Laatst gefactureerde datum')
+        
         return df[df['Laatst gefactureerde datum'] == df['Laatst gefactureerde datum'].unique()[-1]]
 
     def write_active_df_to_excel(self) -> None:
