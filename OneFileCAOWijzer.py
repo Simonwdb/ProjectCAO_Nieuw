@@ -11,7 +11,7 @@ excel_path = ''
 writer = pd.ExcelWriter('VerdelingKlanten.xlsx', engine='openpyxl', mode='a')
 
 
-def convert_int_to_month(number: int) -> calendar:
+def convert_int_to_month(number: int) -> calendar.month:
     return calendar.month[number]
 
 
@@ -114,13 +114,13 @@ class DataSetAllYears:
     def write_result_df_to_excel(self) -> None:
         result_df = self.get_result_df()
         result_df.set_index('Year')
-        result_df.to_excel(writer, sheet_name='Data_6', startcol=1)
+        write_df_to_excel(df=result_df, sheet_name='Data_6', start_col=1)
 
 
 class DataCurrentSituation:
     app: ReadData.ReadData
 
-    def __init__(self):
+    def __init__(self) -> None:
         self.app = ReadData.ReadData(path_file=excel_path)
         self.app.process_customers()
         self.df = self.app.get_dataframe_from_customer_list()
