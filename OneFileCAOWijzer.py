@@ -42,6 +42,8 @@ def get_column_names(annual_df: pd.DataFrame) -> list[str]:
     columns.extend(month_list)
     return columns
 
+def write_df_to_excel(df: pd.DataFrame, sheet_name: str, start_col: float) -> None:
+    df.to_excel(writer, sheet_name=sheet_name, startcol=start_col)
 
 class DataSetAllYears:
     df: pd.DataFrame
@@ -131,10 +133,5 @@ class DataCurrentSituation:
     def write_active_df_to_excel(self) -> None:
         df = self.get_df_active_customers()
         df.to_excel(writer, sheet_name='Data_punt_3_HuidigeVerdeling', startcol=4)
-
-
-
-
-
 
 
